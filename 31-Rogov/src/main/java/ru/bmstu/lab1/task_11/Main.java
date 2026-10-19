@@ -10,21 +10,21 @@ public final class Main {
 
     /** Решает задачу для массива по ограничениям условия, не изменяя его. */
     public static int solve(int[] values) {
-        long sum = 0;
+        long total = 0;
         for (int value : values) {
-            sum += value;
+            total += value;
         }
-        int closest = values[0];
-        long bestDistance = Math.abs((long) closest * values.length - sum);
-        for (int value : values) {
+        int nearestIndex = 0;
+        long minimumDistance = Long.MAX_VALUE;
+        for (int i = 0; i < values.length; i++) {
             // Умножаем расстояние на n: сравниваем точно, без ошибок double.
-            long distance = Math.abs((long) value * values.length - sum);
-            if (distance < bestDistance) {
-                bestDistance = distance;
-                closest = value;
+            long currentDistance = Math.abs((long) values[i] * values.length - total);
+            if (currentDistance < minimumDistance) {
+                minimumDistance = currentDistance;
+                nearestIndex = i;
             }
         }
-        return closest;
+        return values[nearestIndex];
     }
 
     /** Читает n, массив и при необходимости дополнительное число; печатает ответ. */

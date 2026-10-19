@@ -10,27 +10,31 @@ public final class Main {
 
     /** Решает задачу для массива по ограничениям условия, не изменяя его. */
     public static int[][] solve(int[] values) {
-        int positiveCount = 0;
-        int negativeCount = 0;
-        for (int value : values) {
-            if (value > 0) {
-                positiveCount++;
-            } else if (value < 0) {
-                negativeCount++;
+        int positiveSize = 0;
+        int negativeSize = 0;
+        for (int number : values) {
+            if (number > 0) {
+                positiveSize++;
+            } else if (number < 0) {
+                negativeSize++;
             }
         }
-        int[] positive = new int[positiveCount];
-        int[] negative = new int[negativeCount];
-        int positiveIndex = 0;
-        int negativeIndex = 0;
-        for (int value : values) {
-            if (value > 0) {
-                positive[positiveIndex++] = value;
-            } else if (value < 0) {
-                negative[negativeIndex++] = value;
+        int[] positiveValues = new int[positiveSize];
+        int[] negativeValues = new int[negativeSize];
+        fillGroups(values, positiveValues, negativeValues);
+        return new int[][] {positiveValues, negativeValues};
+    }
+
+    private static void fillGroups(int[] values, int[] positiveValues, int[] negativeValues) {
+        int nextPositive = 0;
+        int nextNegative = 0;
+        for (int number : values) {
+            if (number > 0) {
+                positiveValues[nextPositive++] = number;
+            } else if (number < 0) {
+                negativeValues[nextNegative++] = number;
             }
         }
-        return new int[][] {positive, negative};
     }
 
     /** Читает n, массив и при необходимости дополнительное число; печатает ответ. */

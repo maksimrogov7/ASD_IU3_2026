@@ -10,17 +10,18 @@ public final class Main {
 
     /** Решает задачу для массива по ограничениям условия, не изменяя его. */
     public static int solve(int[] values) {
-        int maximum = Math.max(values[0], values[1]);
-        int second = Math.min(values[0], values[1]);
+        int largestValue = Math.max(values[0], values[1]);
+        int secondLargestValue = Math.min(values[0], values[1]);
         for (int i = 2; i < values.length; i++) {
-            if (values[i] > maximum) {
-                second = maximum;
-                maximum = values[i];
-            } else if (values[i] > second) {
-                second = values[i];
+            int currentValue = values[i];
+            if (currentValue > largestValue) {
+                secondLargestValue = largestValue;
+                largestValue = currentValue;
+            } else if (currentValue > secondLargestValue) {
+                secondLargestValue = currentValue;
             }
         }
-        return second;
+        return secondLargestValue;
     }
 
     /** Читает n, массив и при необходимости дополнительное число; печатает ответ. */
