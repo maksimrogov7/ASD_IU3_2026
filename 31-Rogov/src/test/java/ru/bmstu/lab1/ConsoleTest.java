@@ -16,7 +16,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-/** Сквозные проверки стандартного ввода-вывода всех двенадцати программ. */
+/** Сквозные проверки стандартного ввода-вывода всех программ лабораторной. */
 class ConsoleTest {
     static Stream<Arguments> examples() {
         return Stream.of(
@@ -66,7 +66,19 @@ class ConsoleTest {
                 Arguments.of(12, "4 0 5 5 0 5", "0 1\n"),
                 Arguments.of(12, "2 2147483647 2147483647 4294967294", "0 1\n"),
                 Arguments.of(12, "2 -2147483648 -2147483648 -4294967296", "0 1\n"),
-                Arguments.of(12, "2 -2147483648 -2147483648 0", "-1 -1\n")
+                Arguments.of(12, "2 -2147483648 -2147483648 0", "-1 -1\n"),
+                Arguments.of(25, "5 1 -2 0 3 4", "6\n"),
+                Arguments.of(25, "2 2147483647 2147483647", "4294967294\n"),
+                Arguments.of(25, "2 -2147483648 -2147483648", "-4294967296\n"),
+                Arguments.of(26, "2 -2 3", "1000000001\n"),
+                Arguments.of(26, "2 -2 -3", "6\n"),
+                Arguments.of(26, "3 5 0 -7", "0\n"),
+                Arguments.of(26, "2 1000000007 4", "0\n"),
+                Arguments.of(26, "2 -2147483648 2147483647", "1897632\n"),
+                Arguments.of(27, "3 1 -2 3", "14\n"),
+                Arguments.of(27, "2 0 0", "0\n"),
+                Arguments.of(27, "2 -2147483648 -2147483648", "9223372036854775808\n"),
+                Arguments.of(27, "3 2147483647 2147483647 2147483647", "13835058042397261827\n")
         );
     }
 
